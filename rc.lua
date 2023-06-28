@@ -2,6 +2,9 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+-- Own Libraries
+local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -254,6 +257,9 @@ awful.screen.connect_for_each_screen(function(s)
 		s.mytasklist, -- Middle widget
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
+			volume_widget({
+				widget_type = "arc",
+			}),
 			mykeyboardlayout,
 			wibox.widget.systray(),
 			mytextclock,
@@ -279,6 +285,20 @@ globalkeys = gears.table.join(
 	awful.key({}, "Print", function()
 		awful.spawn("flameshot gui")
 	end),
+
+	-- Configure the hotkeys for volume
+	awful.key({}, "#123", function()
+		volume_widget:inc(5)
+	end),
+	awful.key({}, "#122", function()
+		volume_widget:dec(5)
+	end),
+	awful.key({}, "#121", function()
+		volume_widget:toggle()
+	end),
+
+	--default below
+	--------------------------------------------------------------------
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 	awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
