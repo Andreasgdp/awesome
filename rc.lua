@@ -340,6 +340,15 @@ globalkeys = gears.table.join(
 		awful.spawn("lock")
 	end, { description = "lock Screen", group = "awesome" }),
 
+	-- Configure keyboardlayout switcher using setxkbmap us and setxkbmap dk
+	awful.key({ modkey, "Ctrl" }, "d", function()
+		awful.spawn("setxkbmap dk")
+	end, { description = "switch keyboardlayout to Danish DK" }),
+
+	awful.key({ modkey, "Ctrl" }, "e", function()
+		awful.spawn("setxkbmap us")
+	end, { description = "switch keyboardlayout to English US" }),
+
 	-- Configure the hotkeys for alt tab
 	awful.key({ "Mod1" }, "Tab", function()
 		switcher.switch(1, "Mod1", "Alt_L", "Shift", "Tab")
