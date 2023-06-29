@@ -297,6 +297,43 @@ globalkeys = gears.table.join(
 	awful.key({}, "#121", function()
 		volume_widget:toggle()
 	end),
+	-- Configure the hotkeys for media control
+	awful.key({}, "XF86AudioPlay", function()
+		awful.util.spawn(
+			"dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause",
+			false
+		)
+	end, {
+		description = "play/pause music",
+		group = "media",
+	}),
+	awful.key({}, "XF86AudioNext", function()
+		awful.util.spawn(
+			"dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next",
+			false
+		)
+	end, {
+		description = "next track",
+		group = "media",
+	}),
+	awful.key({}, "XF86AudioPrev", function()
+		awful.util.spawn(
+			"dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous",
+			false
+		)
+	end, {
+		description = "previous track",
+		group = "media",
+	}),
+	awful.key({}, "XF86AudioStop", function()
+		awful.util.spawn(
+			"dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop",
+			false
+		)
+	end, {
+		description = "stop music",
+		group = "media",
+	}),
 
 	--run terminal cmd "lock" on keybind mod4 + ctrl + l
 	awful.key({ modkey, "Ctrl" }, "l", function()
