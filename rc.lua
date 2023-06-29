@@ -611,6 +611,12 @@ awful.rules.rules = {
 		properties = { floating = true },
 	},
 
+	-- spotify tile and unminimized
+	{
+		rule_any = { class = { "Spotify" }, name = { "Akiflow", "Messages" } },
+		properties = { floating = false },
+	},
+
 	-- Add titlebars to normal clients and dialogs
 	{ rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = true } },
 
@@ -630,6 +636,12 @@ client.connect_signal("manage", function(c)
 	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
 		-- Prevent clients from being unreachable after screen count changes.
 		awful.placement.no_offscreen(c)
+	end
+end)
+
+client.connect_signal("property::maximized", function(c)
+	if c.maximized and c.class == "Spotify" then
+		c.maximized = false
 	end
 end)
 
