@@ -297,6 +297,11 @@ globalkeys = gears.table.join(
 		volume_widget:toggle()
 	end),
 
+	--run terminal cmd "lock" on keybind mod4 + ctrl + l
+	awful.key({ modkey, "Ctrl" }, "l", function()
+		awful.spawn("lock")
+	end, { description = "lock Screen", group = "awesome" }),
+
 	--default below
 	--------------------------------------------------------------------
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
