@@ -1,3 +1,6 @@
 [submodule "awesome-wm-widgets"]
 	path = awesome-wm-widgets
 	url = git@github.com:Andreasgdp/awesome-wm-widgets.git
+[submodule "awesome-switcher"]
+	path = awesome-switcher
+	url = https://github.com/berlam/awesome-switcher.git

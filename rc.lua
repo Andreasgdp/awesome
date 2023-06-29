@@ -4,6 +4,7 @@ pcall(require, "luarocks.loader")
 
 -- Own Libraries
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+local switcher = require("awesome-switcher")
 
 -- Standard awesome library
 local gears = require("gears")
@@ -301,6 +302,15 @@ globalkeys = gears.table.join(
 	awful.key({ modkey, "Ctrl" }, "l", function()
 		awful.spawn("lock")
 	end, { description = "lock Screen", group = "awesome" }),
+
+	-- Configure the hotkeys for alt tab
+	awful.key({ "Mod1" }, "Tab", function()
+		switcher.switch(1, "Mod1", "Alt_L", "Shift", "Tab")
+	end, { description = "change windows from left to right", group = "awesome" }),
+
+	awful.key({ "Mod1", "Shift" }, "Tab", function()
+		switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
+	end, { description = "change windows from right to left", group = "awesome" }),
 
 	--default below
 	--------------------------------------------------------------------
