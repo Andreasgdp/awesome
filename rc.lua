@@ -668,7 +668,16 @@ client.connect_signal("property::maximized", function(c)
 		c.maximized = false
 	end
 end)
-
+client.connect_signal("property::maximized", function(c)
+	if c.maximized and c.name == "Akiflow" then
+		c.maximized = false
+	end
+end)
+client.connect_signal("property::maximized", function(c)
+	if c.maximized and c.name == "Messages" then
+		c.maximized = false
+	end
+end)
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
 	-- buttons for the titlebar
