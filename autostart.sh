@@ -11,4 +11,5 @@ if command -v streamdeck >/dev/null 2>&1; then
 	run "streamdeck -n"
 fi
 
+run "setxkbmap us"
 run "/home/$USER/.screenlayout/defaultDisplaySetup.sh"
