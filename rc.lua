@@ -377,6 +377,19 @@ globalkeys = gears.table.join(
 		switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
 	end, { description = "change windows from right to left", group = "awesome" }),
 
+  -- Configue hotkeys for opening specific applications
+	-- chrome
+  awful.key({modkey} , "c", function()
+		awful.spawn("google-chrome-stable")
+	end, { description = "open chrome", group = "launcher" }),
+	-- code
+	awful.key({modkey} , "e", function()
+		awful.spawn("code-insiders")
+	end, { description = "open code editor", group = "launcher" }),
+	-- Akiflow (akiflow is installed as a chrome PWA)
+	awful.key({modkey} , "a", function()
+		awful.spawn("google-chrome-stable --app=https://web.akiflow.com/#/planner/today")
+	end, { description = "open akiflow", group = "launcher" }),
 	--default below
 	--------------------------------------------------------------------
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
