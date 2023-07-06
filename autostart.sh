@@ -14,3 +14,4 @@ fi
 run "setxkbmap us"
 run "picom -b --config /home/$USER/.config/picom/picom.conf"
 run "/home/$USER/.screenlayout/defaultDisplaySetup.sh"
+feh --bg-fill ~/wallpaper.jpg
