@@ -377,17 +377,17 @@ globalkeys = gears.table.join(
 		switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
 	end, { description = "change windows from right to left", group = "awesome" }),
 
-  -- Configue hotkeys for opening specific applications
+	-- Configue hotkeys for opening specific applications
 	-- chrome
-  awful.key({modkey} , "c", function()
+	awful.key({ modkey }, "c", function()
 		awful.spawn("google-chrome-stable")
 	end, { description = "open chrome", group = "launcher" }),
 	-- code
-	awful.key({modkey} , "e", function()
+	awful.key({ modkey }, "e", function()
 		awful.spawn("code-insiders")
 	end, { description = "open code editor", group = "launcher" }),
 	-- Akiflow (akiflow is installed as a chrome PWA)
-	awful.key({modkey} , "a", function()
+	awful.key({ modkey }, "a", function()
 		awful.spawn("google-chrome-stable --app=https://web.akiflow.com/#/planner/today")
 	end, { description = "open akiflow", group = "launcher" }),
 	-- Mail inbox
@@ -687,10 +687,10 @@ client.connect_signal("property::maximized", function(c)
 	if c.maximized and c.class == "Spotify" then
 		c.maximized = false
 	end
-if c.maximized and c.name == "Akiflow" then
+	if c.maximized and c.name == "Akiflow" then
 		c.maximized = false
 	end
-if c.maximized and c.name == "Messages" then
+	if c.maximized and c.name == "Messages" then
 		c.maximized = false
 	end
 end)
