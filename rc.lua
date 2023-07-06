@@ -390,6 +390,7 @@ globalkeys = gears.table.join(
 	awful.key({modkey} , "a", function()
 		awful.spawn("google-chrome-stable --app=https://web.akiflow.com/#/planner/today")
 	end, { description = "open akiflow", group = "launcher" }),
+
 	--default below
 	--------------------------------------------------------------------
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
@@ -678,22 +679,17 @@ client.connect_signal("property::maximized", function(c)
 	if c.maximized and c.class == "Code - Insiders" then
 		c.maximized = false
 	end
-end)
-client.connect_signal("property::maximized", function(c)
 	if c.maximized and c.class == "Spotify" then
 		c.maximized = false
 	end
-end)
-client.connect_signal("property::maximized", function(c)
-	if c.maximized and c.name == "Akiflow" then
+if c.maximized and c.name == "Akiflow" then
+		c.maximized = false
+	end
+if c.maximized and c.name == "Messages" then
 		c.maximized = false
 	end
 end)
-client.connect_signal("property::maximized", function(c)
-	if c.maximized and c.name == "Messages" then
-		c.maximized = false
-	end
-end)
+
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
 	-- buttons for the titlebar
