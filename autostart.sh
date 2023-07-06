@@ -12,5 +12,5 @@ if command -v streamdeck >/dev/null 2>&1; then
 fi
 
 run "setxkbmap us"
-run "picom --experimental-backends --config /home/$USER/.config/picom/picom.conf"
+run "picom -b --config /home/$USER/.config/picom/picom.conf"
 run "/home/$USER/.screenlayout/defaultDisplaySetup.sh"
