@@ -360,11 +360,11 @@ globalkeys = gears.table.join(
 	end, { description = "lock Screen", group = "awesome" }),
 
 	-- Configure keyboardlayout switcher using setxkbmap us and setxkbmap dk
-	awful.key({ modkey, "Ctrl" }, "d", function()
+	awful.key({ modkey }, "d", function()
 		awful.spawn("setxkbmap dk")
 	end, { description = "switch keyboardlayout to Danish DK" }),
 
-	awful.key({ modkey, "Ctrl" }, "e", function()
+	awful.key({ modkey }, "e", function()
 		awful.spawn("setxkbmap us")
 	end, { description = "switch keyboardlayout to English US" }),
 
@@ -382,10 +382,7 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "c", function()
 		awful.spawn("google-chrome-stable")
 	end, { description = "open chrome", group = "launcher" }),
-	-- code
-	awful.key({ modkey }, "e", function()
-		awful.spawn("code-insiders")
-	end, { description = "open code editor", group = "launcher" }),
+
 	-- Akiflow (akiflow is installed as a chrome PWA)
 	awful.key({ modkey }, "a", function()
 		awful.spawn("google-chrome-stable --app=https://web.akiflow.com/#/planner/today")
