@@ -390,10 +390,10 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "a", function()
 		awful.spawn("google-chrome-stable --app=https://web.akiflow.com/#/planner/today")
 	end, { description = "open akiflow", group = "launcher" }),
-	-- Mail inbox
+	-- Mail inbox (open not as a PWA)
 	-- TODO: Change this to open the outlook/gmail based on an envirobnment variable (work/personal)
 	awful.key({ modkey }, "i", function()
-		awful.spawn("google-chrome-stable --app=https://outlook.office.com/mail/")
+		awful.spawn("google-chrome-stable --new-window https://outlook.office.com/mail/inbox")
 	end, { description = "open outlook inbox", group = "launcher" }),
 
 	--default below
