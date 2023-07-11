@@ -654,7 +654,7 @@ awful.rules.rules = {
 
 	-- spotify tile and unminimized
 	{
-		rule_any = { class = { "Spotify", "Code - Insiders" }, name = { "Akiflow", "Messages" } },
+		rule_any = { class = { "Spotify", "Code - Insiders", "obsidian" }, name = { "Akiflow", "Messages" } },
 		properties = { floating = false },
 	},
 
