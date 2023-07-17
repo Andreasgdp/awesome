@@ -651,7 +651,7 @@ awful.rules.rules = {
 
 	-- spotify tile and unminimized
 	{
-		rule_any = { class = { "Spotify", "Code - Insiders", "obsidian" }, name = { "Akiflow", "Messages" } },
+		rule_any = { class = { "Spotify", "Code - Insiders", "obsidian", "gazebo" }, name = { "Akiflow", "Messages" } },
 		properties = { floating = false },
 	},
 
@@ -679,6 +679,9 @@ end)
 
 client.connect_signal("property::maximized", function(c)
 	if c.maximized and c.class == "Code - Insiders" then
+		c.maximized = false
+	end
+	if c.maximized and c.class == "gazebo" then
 		c.maximized = false
 	end
 	if c.maximized and c.class == "Spotify" then
