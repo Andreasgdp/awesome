@@ -587,7 +587,7 @@ for i = 1, 9 do
 			end
 		end, { description = "for all screens view tag #" .. i, group = "tag" }),
 		-- Toggle tag display.
-		awful.key({ modkey, "alt" }, "#" .. i + 9, function()
+		awful.key({ modkey, "Mod1" }, "#" .. i + 9, function()
 			local screen = awful.screen.focused()
 			local tag = screen.tags[i]
 			if tag then
