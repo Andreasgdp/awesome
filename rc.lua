@@ -748,5 +748,9 @@ client.connect_signal("unfocus", function(c)
 end)
 -- }}}
 
+-- Enable gaps
+beautiful.useless_gap = 3
+beautiful.gap_single_client = true
+
 -- autostart
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
