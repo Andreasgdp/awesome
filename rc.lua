@@ -32,6 +32,7 @@ require("awful.hotkeys_popup.keys")
 -- Load Debian menu entries
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
+local show_desktop = false
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -392,6 +393,21 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "i", function()
 		awful.spawn("google-chrome-stable --new-window https://outlook.office.com/mail/inbox")
 	end, { description = "open outlook inbox", group = "launcher" }),
+
+	-- Toggle showing the desktop
+	awful.key({ modkey, "Control" }, "d", function(c)
+		if show_desktop then
+			for _, c in ipairs(client.get()) do
+				c:emit_signal("request::activate", "key.unminimize", { raise = true })
+			end
+			show_desktop = false
+		else
+			for _, c in ipairs(client.get()) do
+				c.minimized = true
+			end
+			show_desktop = true
+		end
+	end, { description = "toggle showing the desktop", group = "client" }),
 
 	--default below
 	--------------------------------------------------------------------
