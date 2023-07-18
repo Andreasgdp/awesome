@@ -414,6 +414,17 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 	awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
+	awful.key({ modkey, "Control" }, "Left", function()
+		for i = 1, screen.count() do
+			awful.tag.viewprev(i)
+		end
+	end),
+
+	awful.key({ modkey, "Control" }, "Right", function()
+		for i = 1, screen.count() do
+			awful.tag.viewnext(i)
+		end
+	end),
 	awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
 
 	awful.key({ modkey }, "j", function()
@@ -567,6 +578,16 @@ for i = 1, 9 do
 		end, { description = "view tag #" .. i, group = "tag" }),
 		-- Toggle tag display.
 		awful.key({ modkey, "Control" }, "#" .. i + 9, function()
+			-- for all screens view tag #i
+			for s in screen do
+				local tag = s.tags[i]
+				if tag then
+					tag:view_only()
+				end
+			end
+		end, { description = "for all screens view tag #" .. i, group = "tag" }),
+		-- Toggle tag display.
+		awful.key({ modkey, "alt" }, "#" .. i + 9, function()
 			local screen = awful.screen.focused()
 			local tag = screen.tags[i]
 			if tag then
