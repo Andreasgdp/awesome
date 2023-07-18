@@ -749,7 +749,7 @@ end)
 -- }}}
 
 -- Enable gaps
-beautiful.useless_gap = 3
+beautiful.useless_gap = 5
 beautiful.gap_single_client = true
 
 -- autostart
