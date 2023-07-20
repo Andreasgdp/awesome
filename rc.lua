@@ -4,13 +4,7 @@ pcall(require, "luarocks.loader")
 
 -- Own Libraries
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
-local apt_widget = require("awesome-wm-widgets.apt-widget.apt-widget")
-local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
-local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
-local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
-local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
-local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local switcher = require("awesome-switcher")
 
 -- Standard awesome library
@@ -266,17 +260,6 @@ awful.screen.connect_for_each_screen(function(s)
 		s.mytasklist, -- Middle widget
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			apt_widget(),
-			docker_widget(),
-			net_speed_widget(),
-			cpu_widget({
-				width = 70,
-				step_width = 2,
-				step_spacing = 0,
-				color = "#434c5e",
-			}),
-			fs_widget(),
-			ram_widget(),
 			volume_widget({
 				widget_type = "arc",
 			}),
