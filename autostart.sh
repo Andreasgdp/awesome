@@ -11,8 +11,8 @@ if command -v streamdeck >/dev/null 2>&1; then
 	run "streamdeck -n"
 fi
 
-pkill picom
+killall picom
 run "setxkbmap us"
-run "picom --backend glx"
+# run "picom --backend glx --experimental-backends"
 run "/home/$USER/.screenlayout/defaultDisplaySetup.sh"
 feh --bg-fill ~/wallpaper.jpg
