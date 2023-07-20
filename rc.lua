@@ -409,6 +409,11 @@ globalkeys = gears.table.join(
 		end
 	end, { description = "toggle showing the desktop", group = "client" }),
 
+	-- Open discord with shift + super + d
+	awful.key({ modkey, "Shift" }, "d", function()
+		awful.spawn("discord --no-sandbox --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy")
+	end, { description = "open discord", group = "launcher" }),
+
 	--default below
 	--------------------------------------------------------------------
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
