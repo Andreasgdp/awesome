@@ -11,6 +11,7 @@ if command -v streamdeck >/dev/null 2>&1; then
 	run "streamdeck -n"
 fi
 
+pkill picom
 run "setxkbmap us"
 run "picom --backend glx"
 run "/home/$USER/.screenlayout/defaultDisplaySetup.sh"
