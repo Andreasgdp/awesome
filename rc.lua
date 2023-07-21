@@ -778,5 +778,11 @@ end)
 beautiful.useless_gap = 5
 beautiful.gap_single_client = true
 
+-- Add garbage collection
+gears.timer.start_new(10, function()
+	collectgarbage("step", 30000)
+	return true
+end)
+
 -- autostart
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
