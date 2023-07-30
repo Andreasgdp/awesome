@@ -681,6 +681,12 @@ awful.rules.rules = {
 		properties = { floating = false },
 	},
 
+	-- if a window has WM_WINDOW_ROLE(STRING) = "pop-up" set it to floating = false
+	{
+		rule = { role = "pop-up" },
+		properties = { floating = false },
+	},
+
 	-- Add titlebars to normal clients and dialogs
 	{ rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = true } },
 
