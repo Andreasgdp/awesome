@@ -368,7 +368,7 @@ globalkeys = gears.table.join(
 	end, { description = "open chrome", group = "launcher" }),
 
 	-- Akiflow (akiflow is installed as a chrome PWA)
-	awful.key({ modkey }, "a", function()
+	awful.key({ modkey, "Shift" }, "a", function()
 		awful.spawn("google-chrome-stable --app=https://web.akiflow.com/#/planner/today")
 	end, { description = "open akiflow", group = "launcher" }),
 	-- Mail inbox (open not as a PWA)
@@ -396,6 +396,21 @@ globalkeys = gears.table.join(
 	awful.key({ modkey, "Shift" }, "d", function()
 		awful.spawn("discord --no-sandbox --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy")
 	end, { description = "open discord", group = "launcher" }),
+
+	-- Open spotify with super + shift + s
+	awful.key({ modkey, "Shift" }, "s", function()
+		awful.spawn("spotify")
+	end, { description = "open spotify", group = "launcher" }),
+
+	-- Open obsidian with super + shift + o
+	awful.key({ modkey, "Shift" }, "o", function()
+		awful.spawn("obsidian")
+	end, { description = "open obsidian", group = "launcher" }),
+
+	-- Open awesome config in Code - Insiders with super + a
+	awful.key({ modkey }, "a", function()
+		awful.spawn("bash -c 'code-insiders ~/.config/awesome/'")
+	end, { description = "open awesome config", group = "launcher" }),
 
 	--default below
 	--------------------------------------------------------------------
