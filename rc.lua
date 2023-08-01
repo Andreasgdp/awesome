@@ -289,6 +289,12 @@ globalkeys = gears.table.join(
 	awful.key({}, "Print", function()
 		awful.spawn("flameshot gui")
 	end),
+	-- sudo add-apt-repository ppa:peek-developers/stable
+	-- sudo apt-get update
+	-- sudo apt-get install peek
+	awful.key({modkey}, "Print", function()
+		awful.spawn("peek")
+	end),
 
 	-- Configure the hotkeys for volume
 	awful.key({}, "#123", function()
