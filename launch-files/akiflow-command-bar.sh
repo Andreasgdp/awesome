@@ -23,4 +23,4 @@ xdotool windowactivate $akiflow_window_id
 sleep 0.1
 
 # Open command bar with ctrl+k in akiflow window
-xdotool key --window $akiflow_window_id ctrl+k
+xdotool key --window $akiflow_window_id ctrl+alt+k

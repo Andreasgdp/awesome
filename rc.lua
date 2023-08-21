@@ -424,7 +424,7 @@ globalkeys = gears.table.join(
 	-- Using alt + space run the akiflow-command-bar.sh script
 	-- Make sure to have xdotool istalled - sudo apt install xdotool
 	awful.key({ 'Mod1' }, "space", function()
-		awful.util.spawn("bash -c  '/home/andreas/.config/awesome/launch-files/akiflow-command-bar.sh'")
+		awful.util.spawn("bash -c  '~/.config/awesome/launch-files/akiflow-command-bar.sh'")
 	end, { description = "open akiflow command bar", group = "awesome" }),
 
 	--default below
