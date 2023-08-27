@@ -604,6 +604,23 @@ for i = 1, 9 do
 				end
 			end
 		end, { description = "for all screens view tag #" .. i, group = "tag" }),
+		-- Move every clients from all tags to selected tag (modkey + shift + ctrl + #) on the current screen. No client shold be needed to be focused.
+		awful.key({ modkey, "Shift", "Control" }, "#" .. i + 9, function()
+			for s in screen do
+				local tag = s.tags[i]
+				if tag then
+					tag:view_only()
+				end
+			end
+			
+			local focusedScreen = awful.screen.focused()
+			local tag = focusedScreen.tags[i]
+			if tag then
+				for _, c in ipairs(client.get()) do
+					c:move_to_tag(tag)
+				end
+			end
+		end, { description = "reset all screens to- and move all clients to tag #" .. i, group = "tag" }),
 		-- Toggle tag display.
 		awful.key({ modkey, "Mod1" }, "#" .. i + 9, function()
 			local screen = awful.screen.focused()
