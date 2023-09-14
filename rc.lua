@@ -326,13 +326,13 @@ end, {
 }), -- Configue hotkeys for opening specific applications
 -- chrome
 awful.key({modkey}, "c", function()
-    awful.spawn("google-chrome-stable")
+    awful.spawn("vivaldi")
 end, {
     description = "open chrome",
     group = "launcher"
 }), -- Akiflow (akiflow is installed as a chrome PWA)
 awful.key({modkey, "Shift"}, "a", function()
-    awful.spawn("google-chrome-stable --app=https://web.akiflow.com/#/planner/today")
+    awful.spawn("vivaldi --app=https://web.akiflow.com/#/planner/today")
 end, {
     description = "open akiflow",
     group = "launcher"
@@ -341,8 +341,8 @@ awful.key({modkey}, "i", function()
     -- current user is named 'anpe'
     local current_user = os.getenv("USER")
     local email_command = current_user == "anpe" and
-                              "google-chrome-stable --new-window https://outlook.office.com/mail/inbox" or
-                              "google-chrome-stable --new-window https://mail.google.com/mail/u/0/#inbox"
+                              "vivaldi --new-window https://outlook.office.com/mail/inbox" or
+                              "vivaldi --new-window https://mail.google.com/mail/u/0/#inbox"
     awful.spawn(email_command)
 end, {
     description = "open outlook inbox",
