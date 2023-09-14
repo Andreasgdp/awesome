@@ -386,7 +386,7 @@ end, {
     group = "launcher"
 }), -- Open awesome config in Code - Insiders with super + a
 awful.key({modkey}, "a", function()
-    awful.spawn("bash -c 'code-insiders ~/.config/awesome/'")
+    awful.spawn("bash -c 'code ~/.config/awesome/'")
 end, {
     description = "open awesome config",
     group = "launcher"
