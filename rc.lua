@@ -408,6 +408,102 @@ awful.key({modkey}, "s", hotkeys_popup.show_help, {
 }), awful.key({modkey}, "Right", awful.tag.viewnext, {
     description = "view next",
     group = "tag"
+}), awful.key({modkey, "Mod1"}, "Right", function()
+    -- move selected window in current tag to the right tag
+    local curr_screen = awful.screen.focused()
+    local curr_tag = curr_screen.selected_tag
+    local curr_tag_index = curr_tag.index
+    local next_tag_index = curr_tag_index + 1
+    local next_tag = curr_screen.tags[next_tag_index]
+    if next_tag then
+        local c = client.focus
+        if c then
+            c:move_to_tag(next_tag)
+        end
+    end
+    awful.tag.viewnext()
+end, {
+    description = "move selected window in current tag to the right tag",
+    group = "screen"
+}), awful.key({modkey, "Mod1"}, "Left", function()
+    -- move selected window in current tag to the left tag
+    local curr_screen = awful.screen.focused()
+    local curr_tag = curr_screen.selected_tag
+    local curr_tag_index = curr_tag.index
+    local prev_tag_index = curr_tag_index - 1
+    local prev_tag = curr_screen.tags[prev_tag_index]
+    if prev_tag then
+        local c = client.focus
+        if c then
+            c:move_to_tag(prev_tag)
+        end
+    end
+    awful.tag.viewprev()
+end, {
+    description = "move selected window in current tag to the left tag",
+    group = "screen"
+}), awful.key({modkey, "Control", "Mod1"}, "Right", function()
+    -- move all windows in current tag to the right tag
+    local curr_screen = awful.screen.focused()
+    local curr_tag = curr_screen.selected_tag
+    local curr_tag_index = curr_tag.index
+    local next_tag_index = curr_tag_index + 1
+    local next_tag = curr_screen.tags[next_tag_index]
+    if next_tag then
+        for _, c in ipairs(curr_tag:clients()) do
+            c:move_to_tag(next_tag)
+        end
+    end
+    awful.tag.viewnext()
+end, {
+    description = "move all windows in current tag to the right tag",
+    group = "screen"
+}), awful.key({modkey, "Control", "Mod1"}, "Left", function()
+    -- move all windows in current tag to the left tag
+    local curr_screen = awful.screen.focused()
+    local curr_tag = curr_screen.selected_tag
+    local curr_tag_index = curr_tag.index
+    local prev_tag_index = curr_tag_index - 1
+    local prev_tag = curr_screen.tags[prev_tag_index]
+    if prev_tag then
+        for _, c in ipairs(curr_tag:clients()) do
+            c:move_to_tag(prev_tag)
+        end
+    end
+    awful.tag.viewprev()
+end, {
+    description = "move all windows in current tag to the right tag",
+    group = "screen"
+}), awful.key({modkey, "Shift"}, "Right", function()
+    -- move currently selected window to right screen
+    local curr_screen = awful.screen.focused()
+    local curr_screen_index = curr_screen.index
+    local next_screen_index = curr_screen_index + 1
+    local next_screen = screen[next_screen_index]
+    if next_screen then
+        local c = client.focus
+        if c then
+            c:move_to_screen(next_screen)
+        end
+    end
+end, {
+    description = "move currently selected window to right screen",
+    group = "screen"
+}), awful.key({modkey, "Shift"}, "Left", function()
+    -- move currently selected window to left screen
+    local curr_screen = awful.screen.focused()
+    local curr_screen_index = curr_screen.index
+    local prev_screen_index = curr_screen_index - 1
+    local prev_screen = screen[prev_screen_index]
+    if prev_screen then
+        local c = client.focus
+        if c then
+            c:move_to_screen(prev_screen)
+        end
+    end
+end, {
+    description = "move currently selected window to left screen",
+    group = "screen"
 }), awful.key({modkey, "Control"}, "Left", function()
     for i = 1, screen.count() do
         awful.tag.viewprev(i)
