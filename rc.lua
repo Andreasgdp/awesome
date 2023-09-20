@@ -484,6 +484,7 @@ end, {
         local c = client.focus
         if c then
             c:move_to_screen(next_screen)
+            awful.screen.focus_relative(1)
         end
     end
 end, {
@@ -499,6 +500,7 @@ end, {
         local c = client.focus
         if c then
             c:move_to_screen(prev_screen)
+            awful.screen.focus_relative(-1)
         end
     end
 end, {
