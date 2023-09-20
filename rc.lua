@@ -474,38 +474,6 @@ end, {
 end, {
     description = "move all windows in current tag to the right tag",
     group = "screen"
-}), awful.key({modkey, "Shift"}, "Right", function()
-    -- move currently selected window to right screen
-    local curr_screen = awful.screen.focused()
-    local curr_screen_index = curr_screen.index
-    local next_screen_index = curr_screen_index + 1
-    local next_screen = screen[next_screen_index]
-    if next_screen then
-        local c = client.focus
-        if c then
-            c:move_to_screen(next_screen)
-            awful.screen.focus_relative(1)
-        end
-    end
-end, {
-    description = "move currently selected window to right screen",
-    group = "screen"
-}), awful.key({modkey, "Shift"}, "Left", function()
-    -- move currently selected window to left screen
-    local curr_screen = awful.screen.focused()
-    local curr_screen_index = curr_screen.index
-    local prev_screen_index = curr_screen_index - 1
-    local prev_screen = screen[prev_screen_index]
-    if prev_screen then
-        local c = client.focus
-        if c then
-            c:move_to_screen(prev_screen)
-            awful.screen.focus_relative(-1)
-        end
-    end
-end, {
-    description = "move currently selected window to left screen",
-    group = "screen"
 }), awful.key({modkey}, "Escape", awful.tag.history.restore, {
     description = "go back",
     group = "tag"
@@ -679,6 +647,16 @@ end, {
     c:move_to_screen()
 end, {
     description = "move to screen",
+    group = "client"
+}), awful.key({modkey, "Shift"}, "Left", function(c)
+    c:move_to_screen(c.screen.index + 1)
+end, {
+    description = "move currently selected client to left display",
+    group = "client"
+}), awful.key({modkey, "Shift"}, "Right", function(c)
+    c:move_to_screen(c.screen.index - 1)
+end, {
+    description = "move currently selected client to right display",
     group = "client"
 }), awful.key({modkey}, "t", function(c)
     c.ontop = not c.ontop
