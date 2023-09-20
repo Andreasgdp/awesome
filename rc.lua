@@ -506,15 +506,7 @@ end, {
 end, {
     description = "move currently selected window to left screen",
     group = "screen"
-}), awful.key({modkey, "Control"}, "Left", function()
-    for i = 1, screen.count() do
-        awful.tag.viewprev(i)
-    end
-end), awful.key({modkey, "Control"}, "Right", function()
-    for i = 1, screen.count() do
-        awful.tag.viewnext(i)
-    end
-end), awful.key({modkey}, "Escape", awful.tag.history.restore, {
+}), awful.key({modkey}, "Escape", awful.tag.history.restore, {
     description = "go back",
     group = "tag"
 }), awful.key({modkey}, "j", function()
@@ -549,6 +541,16 @@ end, {
     description = "focus the next screen",
     group = "screen"
 }), awful.key({modkey, "Control"}, "k", function()
+    awful.screen.focus_relative(-1)
+end, {
+    description = "focus the previous screen",
+    group = "screen"
+}), awful.key({modkey, "Control"}, "Left", function()
+    awful.screen.focus_relative(1)
+end, {
+    description = "focus the next screen",
+    group = "screen"
+}), awful.key({modkey, "Control"}, "Right", function()
     awful.screen.focus_relative(-1)
 end, {
     description = "focus the previous screen",
