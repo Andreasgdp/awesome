@@ -68,7 +68,7 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "warp"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -337,6 +337,12 @@ awful.key({modkey, "Shift"}, "a", function()
 end, {
     description = "open akiflow",
     group = "launcher"
+}), -- Messages
+awful.key({modkey, "Shift"}, "m", function()
+    awful.spawn("google-chrome-stable --app=https://messages.google.com/web/conversations")
+end, {
+    description = "open akiflow",
+    group = "launcher"
 }), -- Mail inbox (open not as a PWA)
 awful.key({modkey}, "i", function()
     -- current user is named 'anpe'
@@ -374,7 +380,12 @@ end, {
     description = "open discord",
     group = "launcher"
 }), -- Open spotify with super + shift + s
-awful.key({modkey, "Shift"}, "s", function()
+awful.key({modkey, "Shift"}, "b", function()
+    awful.spawn("bash -c '~/Applications/BambuStudio_linux_ubuntu_v01.08.01.57.AppImage'")
+end, {
+    description = "open bambulab slicer",
+    group = "launcher"
+}), awful.key({modkey, "Shift"}, "s", function()
     awful.spawn("spotify")
 end, {
     description = "open spotify",
@@ -483,7 +494,17 @@ end, {
 end, {
     description = "focus next by index",
     group = "client"
+}), awful.key({modkey}, "Down", function()
+    awful.client.focus.byidx(1)
+end, {
+    description = "focus next by index",
+    group = "client"
 }), awful.key({modkey}, "k", function()
+    awful.client.focus.byidx(-1)
+end, {
+    description = "focus previous by index",
+    group = "client"
+}), awful.key({modkey}, "Up", function()
     awful.client.focus.byidx(-1)
 end, {
     description = "focus previous by index",
@@ -499,7 +520,17 @@ awful.key({modkey, "Shift"}, "j", function()
 end, {
     description = "swap with next client by index",
     group = "client"
+}), awful.key({modkey, "Shift"}, "Down", function()
+    awful.client.swap.byidx(1)
+end, {
+    description = "swap with next client by index",
+    group = "client"
 }), awful.key({modkey, "Shift"}, "k", function()
+    awful.client.swap.byidx(-1)
+end, {
+    description = "swap with previous client by index",
+    group = "client"
+}), awful.key({modkey, "Shift"}, "Up", function()
     awful.client.swap.byidx(-1)
 end, {
     description = "swap with previous client by index",
@@ -867,6 +898,11 @@ client.connect_signal("manage", function(c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
+
+    -- Adds rounded corners to the clients
+    c.shape = function(cr, w, h)
+        gears.shape.rounded_rect(cr, w, h, 5)
+    end
 
     if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
         -- Prevent clients from being unreachable after screen count changes.
