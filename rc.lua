@@ -28,8 +28,8 @@ local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 local show_desktop = false
 
--- place naughty notifications in the bottom right corner
-naughty.config.defaults.position = "bottom_right"
+-- place naughty notifications in the top right corner
+naughty.config.defaults.position = "top_right"
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
