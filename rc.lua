@@ -68,7 +68,8 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "warp"
+-- terminal = "warp-terminal"
+terminal = "terminator"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -398,13 +399,14 @@ end, {
     group = "launcher"
 }), -- Open awesome config in Code - Insiders with super + a
 awful.key({modkey}, "a", function()
-    awful.spawn("bash -c 'code ~/.config/awesome/'")
+    awful.spawn("bash -c 'terminator --execute nvim ~/.config/awesome/'")
+
 end, {
     description = "open awesome config",
     group = "launcher"
 }), -- Using alt + space run the akiflow-command-bar.sh script
 -- Make sure to have xdotool istalled - sudo apt install xdotool
-awful.key({'Mod1'}, "space", function()
+awful.key({"Mod1"}, "space", function()
     awful.util.spawn("bash -c  '~/.config/awesome/launch-files/akiflow-command-bar.sh'")
 end, {
     description = "open akiflow command bar",
