@@ -15,4 +15,8 @@ killall picom
 run "setxkbmap us"
 # run "picom --backend glx --experimental-backends"
 run "/home/$USER/.screenlayout/defaultDisplaySetup.sh"
+
+# if nordvpn is installed, connect to us server
+run "nordvpn c us"
+
 feh --bg-fill ~/wallpaper.jpg
