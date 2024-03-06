@@ -453,7 +453,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		group = "launcher",
 	}), -- Open awesome config in Code - Insiders with super + a
 	awful.key({ modkey }, "a", function()
-		awful.spawn("bash -c 'terminator --execute nvim ~/.config/awesome/'")
+		awful.spawn.with_shell("terminator -e 'cd ~/.config/awesome/; nvim .'")
 	end, {
 		description = "open awesome config",
 		group = "launcher",
