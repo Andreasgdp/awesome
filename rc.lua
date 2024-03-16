@@ -69,7 +69,8 @@ beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "warp-terminal"
-terminal = "terminator"
+terminal = "kitty"
+-- terminal = "terminator -p Catppuccin_Mocha"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -391,6 +392,12 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		description = "open akiflow",
 		group = "launcher",
 	}), -- Messages
+	awful.key({ modkey, "Shift" }, "n", function()
+		awful.spawn("google-chrome-stable --app=https://mem.ai/everything")
+	end, {
+		description = "open akiflow",
+		group = "launcher",
+	}), -- Messages
 	awful.key({ modkey, "Shift" }, "m", function()
 		awful.spawn("google-chrome-stable --app=https://messages.google.com/web/conversations")
 	end, {
@@ -453,7 +460,8 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		group = "launcher",
 	}), -- Open awesome config in Code - Insiders with super + a
 	awful.key({ modkey }, "a", function()
-		awful.spawn.with_shell("terminator -e 'cd ~/.config/awesome/; nvim .'")
+		-- awful.spawn.with_shell("terminator -e 'cd ~/.config/awesome/; nvim .'")
+		awful.spawn.with_shell("kitty sh -c 'cd ~/.config/awesome/; nvim .'")
 	end, {
 		description = "open awesome config",
 		group = "launcher",
