@@ -395,13 +395,13 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	awful.key({ modkey, "Shift" }, "n", function()
 		awful.spawn("google-chrome-stable --app=https://mem.ai/everything")
 	end, {
-		description = "open akiflow",
+		description = "open mem ai for notes",
 		group = "launcher",
 	}), -- Messages
 	awful.key({ modkey, "Shift" }, "m", function()
 		awful.spawn("google-chrome-stable --app=https://messages.google.com/web/conversations")
 	end, {
-		description = "open akiflow",
+		description = "open google messages",
 		group = "launcher",
 	}), -- Mail inbox (open not as a PWA)
 	awful.key({ modkey }, "i", function()
