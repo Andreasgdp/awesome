@@ -387,7 +387,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		group = "launcher",
 	}), -- Akiflow (akiflow is installed as a chrome PWA)
 	awful.key({ modkey, "Shift" }, "a", function()
-		awful.spawn("google-chrome-stable --app=https://web.akiflow.com/#/planner/today")
+		awful.spawn("firefox --new-window https://web.akiflow.com/#/planner/today")
 	end, {
 		description = "open akiflow",
 		group = "launcher",
