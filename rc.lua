@@ -661,7 +661,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		description = "reload awesome",
 		group = "awesome",
 	}),
-	awful.key({ modkey, "Shift" }, "q", awesome.quit, {
+	awful.key({ modkey, "Shift" }, "delete", awesome.quit, {
 		description = "quit awesome",
 		group = "awesome",
 	}),
@@ -762,6 +762,12 @@ clientkeys = gears.table.join(
 		group = "client",
 	}),
 	awful.key({ modkey, "Shift" }, "c", function(c)
+		c:kill()
+	end, {
+		description = "close",
+		group = "client",
+	}),
+	awful.key({ modkey }, "q", function(c)
 		c:kill()
 	end, {
 		description = "close",
