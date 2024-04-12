@@ -351,19 +351,19 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		description = "stop music",
 		group = "media",
 	}), -- run terminal cmd "lock" on keybind mod4 + ctrl + l
-	awful.key({ modkey, "Ctrl" }, "l", function()
+	awful.key({ modkey }, "Escape", function()
 		awful.spawn("lock")
 	end, {
 		description = "lock Screen",
 		group = "awesome",
 	}), -- Configure keyboardlayout switcher using setxkbmap us and setxkbmap dk
-	awful.key({ modkey }, "d", function()
-		awful.spawn("setxkbmap dk")
-	end, {
-		description = "switch keyboardlayout to Danish DK",
-	}),
+	-- awful.key({ modkey }, "d", function()
+	-- 	awful.spawn("setxkbmap dk")
+	-- end, {
+	-- 	description = "switch keyboardlayout to Danish DK",
+	-- }),
 	awful.key({ modkey }, "e", function()
-		awful.spawn("setxkbmap us")
+		awful.spawn("setxkbmap us intl")
 	end, {
 		description = "switch keyboardlayout to English US",
 	}), -- Configure the hotkeys for alt tab
@@ -380,7 +380,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		group = "awesome",
 	}), -- Configue hotkeys for opening specific applications
 	-- chrome
-	awful.key({ modkey }, "c", function()
+	awful.key({ modkey }, "f", function()
 		awful.spawn("google-chrome-stable")
 	end, {
 		description = "open chrome",
@@ -522,6 +522,50 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		description = "move selected window in current tag to the left tag",
 		group = "screen",
 	}),
+	awful.key({ modkey, "Control" }, "h", awful.tag.viewprev, {
+		description = "view previous",
+		group = "tag",
+	}),
+	awful.key({ modkey, "Control" }, "l", awful.tag.viewnext, {
+		description = "view next",
+		group = "tag",
+	}),
+	awful.key({ modkey, "Control", "Mod1" }, "l", function()
+		-- move selected window in current tag to the right tag
+		local curr_screen = awful.screen.focused()
+		local curr_tag = curr_screen.selected_tag
+		local curr_tag_index = curr_tag.index
+		local next_tag_index = curr_tag_index + 1
+		local next_tag = curr_screen.tags[next_tag_index]
+		if next_tag then
+			local c = client.focus
+			if c then
+				c:move_to_tag(next_tag)
+			end
+		end
+		awful.tag.viewnext()
+	end, {
+		description = "move selected window in current tag to the right tag",
+		group = "screen",
+	}),
+	awful.key({ modkey, "Control", "Mod1" }, "h", function()
+		-- move selected window in current tag to the left tag
+		local curr_screen = awful.screen.focused()
+		local curr_tag = curr_screen.selected_tag
+		local curr_tag_index = curr_tag.index
+		local prev_tag_index = curr_tag_index - 1
+		local prev_tag = curr_screen.tags[prev_tag_index]
+		if prev_tag then
+			local c = client.focus
+			if c then
+				c:move_to_tag(prev_tag)
+			end
+		end
+		awful.tag.viewprev()
+	end, {
+		description = "move selected window in current tag to the left tag",
+		group = "screen",
+	}),
 	awful.key({ modkey, "Control", "Mod1" }, "Right", function()
 		-- move all windows in current tag to the right tag
 		local curr_screen = awful.screen.focused()
@@ -556,10 +600,10 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		description = "move all windows in current tag to the right tag",
 		group = "screen",
 	}),
-	awful.key({ modkey }, "Escape", awful.tag.history.restore, {
-		description = "go back",
-		group = "tag",
-	}),
+	-- awful.key({ modkey }, "Escape", awful.tag.history.restore, {
+	-- 	description = "go back",
+	-- 	group = "tag",
+	-- }),
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.byidx(1)
 	end, {
@@ -754,7 +798,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 )
 
 clientkeys = gears.table.join(
-	awful.key({ modkey }, "f", function(c)
+	awful.key({ "Mod1" }, "Return", function(c)
 		c.fullscreen = not c.fullscreen
 		c:raise()
 	end, {
