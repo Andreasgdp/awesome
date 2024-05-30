@@ -363,7 +363,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	-- 	description = "switch keyboardlayout to Danish DK",
 	-- }),
 	awful.key({ modkey }, "e", function()
-		awful.spawn("setxkbmap us intl")
+		awful.spawn("setxkbmap us altgr-intl")
 	end, {
 		description = "switch keyboardlayout to English US",
 	}), -- Configure the hotkeys for alt tab

@@ -19,6 +19,6 @@ run "/home/$USER/.screenlayout/defaultDisplaySetup.sh"
 # if nordvpn is installed, connect to us server
 run "nordvpn c us"
 
-setxkbmap us intl
+setxkbmap us altgr-intl
 
 feh --bg-fill ~/wallpaper.jpg
