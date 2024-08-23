@@ -404,7 +404,8 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	}), -- Configue hotkeys for opening specific applications
 	-- chrome
 	awful.key({ modkey }, "f", function()
-		awful.spawn("google-chrome-stable")
+		-- awful.spawn("google-chrome-stable")
+		awful.spawn("firefox")
 	end, {
 		description = "open chrome",
 		group = "launcher",
