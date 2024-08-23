@@ -5,6 +5,9 @@ pcall(require, "luarocks.loader")
 -- Own Libraries
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+local apt_widget = require("awesome-wm-widgets.apt-widget.apt-widget")
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 local switcher = require("awesome-switcher")
 
 -- Standard awesome library
@@ -266,6 +269,7 @@ awful.screen.connect_for_each_screen(function(s)
 		layout = wibox.layout.align.horizontal,
 		{ -- Left widgets
 			layout = wibox.layout.fixed.horizontal,
+			spacing = 7,
 			mylauncher,
 			s.mytaglist,
 			s.mypromptbox,
@@ -273,11 +277,23 @@ awful.screen.connect_for_each_screen(function(s)
 		s.mytasklist, -- Middle widget
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
+			spacing = 10,
+			wibox.widget.systray(),
 			volume_widget({
 				widget_type = "arc",
 			}),
 			mykeyboardlayout,
-			wibox.widget.systray(),
+			apt_widget(),
+			brightness_widget({
+				type = "icon_and_text",
+				program = "brightnessctl",
+				step = 5,
+			}),
+			batteryarc_widget({
+				show_current_level = true,
+				arc_thickness = 2,
+				timeout = 1,
+			}),
 			mytextclock,
 			logout_menu_widget(),
 			s.mylayoutbox,
@@ -315,6 +331,13 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	awful.key({}, "#121", function()
 		volume_widget:toggle()
 	end), -- Configure the hotkeys for media control
+	-- configure brightness control
+	awful.key({}, "XF86MonBrightnessUp", function()
+		brightness_widget:inc()
+	end),
+	awful.key({}, "XF86MonBrightnessDown", function()
+		brightness_widget:dec()
+	end),
 	awful.key({}, "XF86AudioPlay", function()
 		awful.util.spawn(
 			"dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause",
