@@ -1198,6 +1198,35 @@ end)
 beautiful.useless_gap = 5
 beautiful.gap_single_client = true
 
+local catppuccin_colors = {
+	bg = "#1E1E2E", -- Base background
+	fg = "#CDD6F4", -- Foreground text
+	red = "#F38BA8", -- Red
+	green = "#A6E3A1", -- Green
+	yellow = "#F9E2AF", -- Yellow
+	blue = "#89B4FA", -- Blue
+	magenta = "#F5C2E7", -- Magenta
+	cyan = "#94E2D5", -- Cyan
+	white = "#BAC2DE", -- White
+	black = "#11111B", -- Black
+}
+
+-- Apply the colors to the theme
+beautiful.bg_normal = catppuccin_colors.bg
+beautiful.fg_normal = catppuccin_colors.fg
+beautiful.bg_focus = catppuccin_colors.blue
+beautiful.fg_focus = catppuccin_colors.bg
+beautiful.bg_urgent = catppuccin_colors.red
+beautiful.fg_urgent = catppuccin_colors.bg
+beautiful.border_normal = catppuccin_colors.black
+beautiful.border_focus = catppuccin_colors.blue
+beautiful.border_marked = catppuccin_colors.green
+beautiful.titlebar_bg_focus = catppuccin_colors.bg
+beautiful.titlebar_bg_normal = catppuccin_colors.bg
+beautiful.titlebar_fg_focus = catppuccin_colors.fg
+beautiful.titlebar_fg_normal = catppuccin_colors.fg
+beautiful.taglist_bg_occupied = catppuccin_colors.bg
+
 -- Add garbage collection
 gears.timer.start_new(10, function()
 	collectgarbage("step", 30000)
