@@ -1087,7 +1087,7 @@ awful.rules.rules = { -- All clients will match this rule.
 			type = { "normal", "dialog" },
 		},
 		properties = {
-			titlebars_enabled = true,
+			titlebars_enabled = false,
 		},
 	}, -- Set Firefox to always map on the tag named "2" on screen 1.
 	-- { rule = { class = "Firefox" },
