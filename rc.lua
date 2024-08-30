@@ -472,7 +472,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		description = "open obsidian",
 		group = "launcher",
 	}), -- Open awesome config in Code - Insiders with super + a
-	awful.key({ "Mod1" }, "space", function()
+	awful.key({ modkey }, "space", function()
 		awful.util.spawn("bash -c  '~/.config/awesome/launch-files/akiflow-command-bar.sh'")
 	end, {
 		description = "open akiflow command bar",
