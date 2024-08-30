@@ -411,7 +411,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		group = "launcher",
 	}), -- Akiflow (akiflow is installed as a chrome PWA)
 	awful.key({ modkey, "Shift" }, "a", function()
-		awful.spawn("firefox --new-window https://web.akiflow.com/#/planner/today")
+		awful.spawn("google-chrome-stable --app=https://web.akiflow.com/#/planner/today")
 	end, {
 		description = "open akiflow",
 		group = "launcher",
@@ -1195,7 +1195,7 @@ end)
 -- }}}
 
 -- Enable gaps
-beautiful.useless_gap = 5
+beautiful.useless_gap = 3
 beautiful.gap_single_client = true
 
 local catppuccin_colors = {
