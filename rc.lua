@@ -394,7 +394,8 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	-- chrome
 	awful.key({ modkey }, "f", function()
 		-- awful.spawn("google-chrome-stable")
-		awful.spawn("firefox")
+		-- awful.spawn("firefox")
+		awful.spawn("flatpak run io.github.zen_browser.zen")
 	end, {
 		description = "open chrome",
 		group = "launcher",
