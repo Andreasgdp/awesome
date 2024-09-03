@@ -1033,7 +1033,7 @@ end)
 -- }}}
 
 -- Enable gaps
-beautiful.useless_gap = 3
+beautiful.useless_gap = 6
 beautiful.gap_single_client = true
 
 local catppuccin_colors = {
