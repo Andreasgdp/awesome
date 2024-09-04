@@ -1039,6 +1039,19 @@ client.connect_signal("unfocus", function(c)
 end)
 -- }}}
 
+client.connect_signal("property::floating", function(c)
+	-- if a client that is fullscreen do nothing
+	if c.fullscreen then
+		return
+	end
+
+	if c.floating then
+		c.ontop = true
+	else
+		c.ontop = false
+	end
+end)
+
 -- Enable gaps
 beautiful.useless_gap = 6
 beautiful.gap_single_client = true
