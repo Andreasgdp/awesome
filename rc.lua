@@ -494,24 +494,36 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	}),
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.global_bydirection("down")
+		if mouse.object_under_pointer() ~= client.focus then
+			client.focus = nil
+		end
 	end, {
 		description = "focus next by index",
 		group = "client",
 	}),
 	awful.key({ modkey }, "k", function()
 		awful.client.focus.global_bydirection("up")
+		if mouse.object_under_pointer() ~= client.focus then
+			client.focus = nil
+		end
 	end, {
 		description = "focus previous by index",
 		group = "client",
 	}),
 	awful.key({ modkey }, "h", function()
 		awful.client.focus.global_bydirection("left")
+		if mouse.object_under_pointer() ~= client.focus then
+			client.focus = nil
+		end
 	end, {
 		description = "focus previous by index",
 		group = "client",
 	}),
 	awful.key({ modkey }, "l", function()
 		awful.client.focus.global_bydirection("right")
+		if mouse.object_under_pointer() ~= client.focus then
+			client.focus = nil
+		end
 	end, {
 		description = "focus previous by index",
 		group = "client",
