@@ -383,6 +383,13 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		description = "change windows from left to right",
 		group = "awesome",
 	}),
+	-- toggle picom with super + shift + p
+	awful.key({ modkey, "Shift" }, "p", function()
+		awful.spawn("bash -c  '~/.config/awesome/toggle-picom.sh'")
+	end, {
+		description = "toggle picom",
+		group = "awesome",
+	}),
 	awful.key({ "Mod1", "Shift" }, "Tab", function()
 		switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
 	end, {
