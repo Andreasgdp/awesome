@@ -46,8 +46,6 @@ if awesome.startup_errors then
 end
 
 local function move_mouse_onto_focused_client(c)
-	client.focus = c
-	c:raise()
 	if mouse.object_under_pointer() ~= c then
 		local geometry = c:geometry()
 		local x = geometry.x + geometry.width / 2
@@ -496,6 +494,8 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		awful.client.focus.global_bydirection("down")
 		if mouse.object_under_pointer() ~= client.focus then
 			client.focus = nil
+		else
+			move_mouse_onto_focused_client(client.focus)
 		end
 	end, {
 		description = "focus next by index",
@@ -505,6 +505,8 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		awful.client.focus.global_bydirection("up")
 		if mouse.object_under_pointer() ~= client.focus then
 			client.focus = nil
+		else
+			move_mouse_onto_focused_client(client.focus)
 		end
 	end, {
 		description = "focus previous by index",
@@ -514,6 +516,8 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		awful.client.focus.global_bydirection("left")
 		if mouse.object_under_pointer() ~= client.focus then
 			client.focus = nil
+		else
+			move_mouse_onto_focused_client(client.focus)
 		end
 	end, {
 		description = "focus previous by index",
@@ -523,6 +527,8 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		awful.client.focus.global_bydirection("right")
 		if mouse.object_under_pointer() ~= client.focus then
 			client.focus = nil
+		else
+			move_mouse_onto_focused_client(client.focus)
 		end
 	end, {
 		description = "focus previous by index",
@@ -1011,6 +1017,12 @@ client.connect_signal("mouse::enter", function(c)
 	c:emit_signal("request::activate", "mouse_enter", {
 		raise = false,
 	})
+end)
+
+client.connect_signal("swapped", function(c, is_source)
+	if is_source then
+		move_mouse_onto_focused_client(c)
+	end
 end)
 
 client.connect_signal("focus", function(c)
