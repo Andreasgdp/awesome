@@ -516,7 +516,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		description = "focus previous by index",
 		group = "client",
 	}),
-	awful.key({ modkey }, "w", function()
+	awful.key({ modkey, "Control" }, "w", function()
 		mymainmenu:show()
 	end, {
 		description = "show main menu",
@@ -658,7 +658,7 @@ clientkeys = gears.table.join(
 		description = "close",
 		group = "client",
 	}),
-	awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle, {
+	awful.key({ modkey }, "w", awful.client.floating.toggle, {
 		description = "toggle floating",
 		group = "client",
 	}),
