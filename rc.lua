@@ -494,24 +494,28 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	}),
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.global_bydirection("down")
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "focus next by index",
 		group = "client",
 	}),
 	awful.key({ modkey }, "k", function()
 		awful.client.focus.global_bydirection("up")
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "focus previous by index",
 		group = "client",
 	}),
 	awful.key({ modkey }, "h", function()
 		awful.client.focus.global_bydirection("left")
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "focus previous by index",
 		group = "client",
 	}),
 	awful.key({ modkey }, "l", function()
 		awful.client.focus.global_bydirection("right")
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "focus previous by index",
 		group = "client",
@@ -526,6 +530,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	awful.key({ modkey, "Shift" }, "j", function()
 		awful.client.swap.global_bydirection("down")
 		awful.client.focus.global_bydirection("down")
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "swap with client below",
 		group = "client",
@@ -533,6 +538,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	awful.key({ modkey, "Shift" }, "k", function()
 		awful.client.swap.global_bydirection("up")
 		awful.client.focus.global_bydirection("up")
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "swap with client above",
 		group = "client",
@@ -540,6 +546,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	awful.key({ modkey, "Shift" }, "h", function()
 		awful.client.swap.global_bydirection("left")
 		awful.client.focus.global_bydirection("left")
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "swap with client to the left",
 		group = "client",
@@ -547,6 +554,7 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	awful.key({ modkey, "Shift" }, "l", function()
 		awful.client.swap.global_bydirection("right")
 		awful.client.focus.global_bydirection("right")
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "swap with client to the right",
 		group = "client",
@@ -1024,7 +1032,6 @@ timer:start()
 
 client.connect_signal("focus", function(c)
 	c.border_color = beautiful.border_focus
-	move_mouse_onto_focused_client(c)
 end)
 
 client.connect_signal("unfocus", function(c)
