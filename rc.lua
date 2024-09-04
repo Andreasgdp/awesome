@@ -217,12 +217,34 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local indexMapper = {
+	[1] = 1,
+	[2] = 1,
+	[4] = 2,
+	[6] = 3,
+	[7] = 4,
+	[8] = 5,
+	[9] = 6,
+	[3] = 1,
+	[5] = 2,
+}
+
 awful.screen.connect_for_each_screen(function(s)
 	-- Wallpaper
 	set_wallpaper(s)
 
 	-- Each screen has its own tag table.
-	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+	-- 	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+	if s.index == 1 then
+		-- Screen 1 gets tag "1"
+		awful.tag({ "2", "4", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+	elseif s.index == 2 then
+		-- Screen 2 gets tags "2", "4", "6", "7", "8", "9"
+		awful.tag({ "1" }, s, awful.layout.layouts[1])
+	elseif s.index == 3 then
+		-- Screen 3 gets tags "3", "5"
+		awful.tag({ "3", "5" }, s, awful.layout.layouts[1])
+	end
 
 	-- Create a promptbox for each screen
 	s.mypromptbox = awful.widget.prompt()
@@ -764,77 +786,72 @@ for i = 1, 9 do
 	globalkeys = gears.table.join(
 		globalkeys, -- View tag only.
 		awful.key({ modkey }, "#" .. i + 9, function()
-			local screen = awful.screen.focused()
-			local tag = screen.tags[i]
-			if tag then
-				tag:view_only()
+			if i == 2 or i == 4 or i == 6 or i == 7 or i == 8 or i == 9 then
+				local tag = screen[1].tags[indexMapper[i]]
+				if tag then
+					tag:view_only()
+					-- focus the first client on the tag
+					local clients = tag:clients()
+					if clients[1] then
+						clients[1]:emit_signal("request::activate", "key.unminimize", { raise = true })
+					end
+				end
+			end
+			if i == 1 then
+				local tag = screen[2].tags[indexMapper[i]]
+				if tag then
+					tag:view_only()
+					-- focus the first client on the tag
+					local clients = tag:clients()
+					if clients[1] then
+						clients[1]:emit_signal("request::activate", "key.unminimize", { raise = true })
+					end
+				end
+			end
+			if i == 3 or i == 5 then
+				local tag = screen[3].tags[indexMapper[i]]
+				if tag then
+					tag:view_only()
+					-- focus the first client on the tag
+					local clients = tag:clients()
+					if clients[1] then
+						clients[1]:emit_signal("request::activate", "key.unminimize", { raise = true })
+					end
+				end
 			end
 		end, {
 			description = "view tag #" .. i,
 			group = "tag",
-		}), -- Toggle tag display.
-		awful.key({ modkey, "Control" }, "#" .. i + 9, function()
-			-- for all screens view tag #i
-			for s in screen do
-				local tag = s.tags[i]
-				if tag then
-					tag:view_only()
-				end
-			end
-		end, {
-			description = "for all screens view tag #" .. i,
-			group = "tag",
 		}),
-		-- Move every clients from all tags to selected tag (modkey + shift + ctrl + #) on the current screen. No client shold be needed to be focused.
-		awful.key({ modkey, "Shift", "Control" }, "#" .. i + 9, function()
-			for s in screen do
-				local tag = s.tags[i]
-				if tag then
-					tag:view_only()
-				end
-			end
-
-			local focusedScreen = awful.screen.focused()
-			local tag = focusedScreen.tags[i]
-			if tag then
-				for _, c in ipairs(client.get()) do
-					c:move_to_tag(tag)
-				end
-			end
-		end, {
-			description = "reset all screens to- and move all clients to tag #" .. i,
-			group = "tag",
-		}), -- Toggle tag display.
-		awful.key({ modkey, "Mod1" }, "#" .. i + 9, function()
-			local screen = awful.screen.focused()
-			local tag = screen.tags[i]
-			if tag then
-				awful.tag.viewtoggle(tag)
-			end
-		end, {
-			description = "toggle tag #" .. i,
-			group = "tag",
-		}), -- Move client to tag.
 		awful.key({ modkey, "Shift" }, "#" .. i + 9, function()
+			-- if client.focus then
+			-- 	local tag = client.focus.screen.tags[i]
+			-- 	if tag then
+			-- 		client.focus:move_to_tag(tag)
+			-- 	end
+			-- end
 			if client.focus then
-				local tag = client.focus.screen.tags[i]
-				if tag then
-					client.focus:move_to_tag(tag)
+				if i == 2 or i == 4 or i == 6 or i == 7 or i == 8 or i == 9 then
+					local tag = screen[1].tags[indexMapper[i]]
+					if tag then
+						client.focus:move_to_tag(tag)
+					end
+				end
+				if i == 1 then
+					local tag = screen[2].tags[indexMapper[i]]
+					if tag then
+						client.focus:move_to_tag(tag)
+					end
+				end
+				if i == 3 or i == 5 then
+					local tag = screen[3].tags[indexMapper[i]]
+					if tag then
+						client.focus:move_to_tag(tag)
+					end
 				end
 			end
 		end, {
 			description = "move focused client to tag #" .. i,
-			group = "tag",
-		}), -- Toggle tag on focused client.
-		awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, function()
-			if client.focus then
-				local tag = client.focus.screen.tags[i]
-				if tag then
-					client.focus:toggle_tag(tag)
-				end
-			end
-		end, {
-			description = "toggle focused client on tag #" .. i,
 			group = "tag",
 		})
 	)
