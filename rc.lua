@@ -525,28 +525,24 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	-- hjkl swap by direction
 	awful.key({ modkey, "Shift" }, "j", function()
 		awful.client.swap.global_bydirection("down")
-		awful.client.focus.global_bydirection("down")
 	end, {
 		description = "swap with client below",
 		group = "client",
 	}),
 	awful.key({ modkey, "Shift" }, "k", function()
 		awful.client.swap.global_bydirection("up")
-		awful.client.focus.global_bydirection("up")
 	end, {
 		description = "swap with client above",
 		group = "client",
 	}),
 	awful.key({ modkey, "Shift" }, "h", function()
 		awful.client.swap.global_bydirection("left")
-		awful.client.focus.global_bydirection("left")
 	end, {
 		description = "swap with client to the left",
 		group = "client",
 	}),
 	awful.key({ modkey, "Shift" }, "l", function()
 		awful.client.swap.global_bydirection("right")
-		awful.client.focus.global_bydirection("right")
 	end, {
 		description = "swap with client to the right",
 		group = "client",
@@ -1004,23 +1000,6 @@ client.connect_signal("mouse::enter", function(c)
 		raise = false,
 	})
 end)
-
--- TODO: find a better way to focus the client under the cursor that does not involve a timer
-local timer = gears.timer({ timeout = 0.1 })
-
--- In the timer's callback function, check the client under the cursor
-timer:connect_signal("timeout", function()
-	-- Get the client under the cursor
-	local cc = awful.mouse.client_under_pointer()
-
-	-- If there is a client under the cursor and it's not the currently focused client, focus it
-	if cc and client.focus ~= cc then
-		client.focus = cc
-	end
-end)
-
--- Start the timer
-timer:start()
 
 client.connect_signal("focus", function(c)
 	c.border_color = beautiful.border_focus
