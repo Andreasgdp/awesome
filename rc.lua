@@ -1055,6 +1055,8 @@ client.connect_signal("property::floating", function(c)
 
 	if c.floating then
 		c.ontop = true
+		-- center the client
+		awful.placement.centered(c, { honor_workarea = true, honor_padding = true })
 	else
 		c.ontop = false
 	end
