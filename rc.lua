@@ -260,6 +260,8 @@ awful.screen.connect_for_each_screen(function(s)
 	})
 
 	-- Add widgets to the wibox
+	local is_laptop = os.execute("hostnamectl chassis | grep -i laptop")
+
 	s.mywibox:setup({
 		layout = wibox.layout.align.horizontal,
 		{ -- Left widgets
@@ -279,16 +281,19 @@ awful.screen.connect_for_each_screen(function(s)
 			}),
 			mykeyboardlayout,
 			apt_widget(),
-			brightness_widget({
-				type = "icon_and_text",
-				program = "brightnessctl",
-				step = 5,
-			}),
-			batteryarc_widget({
+			-- Only add brightness and battery widgets if the system is a laptop
+			is_laptop
+					and brightness_widget({
+						type = "icon_and_text",
+						program = "brightnessctl",
+						step = 5,
+					})
+				or nil,
+			is_laptop and batteryarc_widget({
 				show_current_level = true,
 				arc_thickness = 2,
 				timeout = 1,
-			}),
+			}) or nil,
 			mytextclock,
 			logout_menu_widget(),
 			s.mylayoutbox,
