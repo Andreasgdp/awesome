@@ -789,6 +789,11 @@ for i = 1, 9 do
 			if i == 2 or i == 4 or i == 6 or i == 7 or i == 8 or i == 9 then
 				local tag = screen[1].tags[indexMapper[i]]
 				if tag then
+					local geometry = screen[1].geometry
+					local x = geometry.x + geometry.width / 2
+					local y = geometry.y + geometry.height / 2
+					mouse.coords({ x = x, y = y }, true)
+
 					tag:view_only()
 					-- focus the first client on the tag
 					local clients = tag:clients()
@@ -800,6 +805,11 @@ for i = 1, 9 do
 			if i == 1 then
 				local tag = screen[2].tags[indexMapper[i]]
 				if tag then
+					local geometry = screen[2].geometry
+					local x = geometry.x + geometry.width / 2
+					local y = geometry.y + geometry.height / 2
+					mouse.coords({ x = x, y = y }, true)
+
 					tag:view_only()
 					-- focus the first client on the tag
 					local clients = tag:clients()
@@ -811,6 +821,11 @@ for i = 1, 9 do
 			if i == 3 or i == 5 then
 				local tag = screen[3].tags[indexMapper[i]]
 				if tag then
+					local geometry = screen[3].geometry
+					local x = geometry.x + geometry.width / 2
+					local y = geometry.y + geometry.height / 2
+					mouse.coords({ x = x, y = y }, true)
+
 					tag:view_only()
 					-- focus the first client on the tag
 					local clients = tag:clients()
