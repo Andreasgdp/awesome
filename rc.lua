@@ -949,7 +949,7 @@ client.connect_signal("manage", function(c)
 
 	-- Adds rounded corners to the clients
 	c.shape = function(cr, w, h)
-		gears.shape.rounded_rect(cr, w, h, 5)
+		gears.shape.rounded_rect(cr, w, h, 15)
 	end
 
 	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
