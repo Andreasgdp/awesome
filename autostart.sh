@@ -19,6 +19,8 @@ run "/home/$USER/.screenlayout/defaultDisplaySetup.sh"
 # if nordvpn is installed, connect to us server
 run "nordvpn c us"
 
+run "greenclip daemon"
+
 setxkbmap us altgr-intl
 
 feh --bg-fill ~/wallpaper.jpg

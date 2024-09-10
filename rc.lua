@@ -671,6 +671,12 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	end, {
 		description = "rofi emoji",
 		group = "launcher",
+	}),
+	awful.key({ modkey }, "v", function()
+		awful.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'")
+	end, {
+		description = "rofi clipboard",
+		group = "launcher",
 	})
 )
 
