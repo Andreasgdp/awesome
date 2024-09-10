@@ -665,6 +665,12 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	end, {
 		description = "rofi launcher",
 		group = "launcher",
+	}),
+	awful.key({ modkey }, ".", function()
+		awful.spawn("rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C")
+	end, {
+		description = "rofi emoji",
+		group = "launcher",
 	})
 )
 
