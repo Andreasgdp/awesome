@@ -504,44 +504,28 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	}),
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.global_bydirection("down")
-		if mouse.object_under_pointer() ~= client.focus then
-			client.focus = nil
-		else
-			move_mouse_onto_focused_client(client.focus)
-		end
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "focus next by index",
 		group = "client",
 	}),
 	awful.key({ modkey }, "k", function()
 		awful.client.focus.global_bydirection("up")
-		if mouse.object_under_pointer() ~= client.focus then
-			client.focus = nil
-		else
-			move_mouse_onto_focused_client(client.focus)
-		end
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "focus previous by index",
 		group = "client",
 	}),
 	awful.key({ modkey }, "h", function()
 		awful.client.focus.global_bydirection("left")
-		if mouse.object_under_pointer() ~= client.focus then
-			client.focus = nil
-		else
-			move_mouse_onto_focused_client(client.focus)
-		end
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "focus previous by index",
 		group = "client",
 	}),
 	awful.key({ modkey }, "l", function()
 		awful.client.focus.global_bydirection("right")
-		if mouse.object_under_pointer() ~= client.focus then
-			client.focus = nil
-		else
-			move_mouse_onto_focused_client(client.focus)
-		end
+		move_mouse_onto_focused_client(client.focus)
 	end, {
 		description = "focus previous by index",
 		group = "client",
@@ -601,10 +585,14 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 		description = "focus the previous screen",
 		group = "screen",
 	}),
-	awful.key({ modkey }, "u", awful.client.urgent.jumpto, {
-		description = "jump to urgent client",
-		group = "client",
-	}),
+	awful.key({ modkey }, "u", function()
+		-- if no urgent client, move the cursor to the center of the focused client
+		if awful.client.urgent.get() == nil then
+			move_mouse_onto_focused_client(client.focus)
+		else
+			awful.client.urgent.jumpto()
+		end
+	end, { description = "jump to urgent client", group = "client" }),
 	awful.key({ modkey }, "Tab", function()
 		awful.client.focus.history.previous()
 		if client.focus then
@@ -1043,15 +1031,8 @@ client.connect_signal("mouse::enter", function(c)
 	})
 end)
 
-client.connect_signal("swapped", function(c, is_source)
-	if is_source then
-		move_mouse_onto_focused_client(c)
-	end
-end)
-
 client.connect_signal("focus", function(c)
 	c.border_color = beautiful.border_focus
-	move_mouse_onto_focused_client(c)
 end)
 
 client.connect_signal("unfocus", function(c)
