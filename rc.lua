@@ -34,6 +34,10 @@ local show_desktop = false
 -- place naughty notifications in the top right corner
 naughty.config.defaults.position = "top_right"
 
+-- disable snap
+awful.mouse.snap.edge_enabled = false
+awful.mouse.snap.client_enabled = false
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -403,9 +407,9 @@ globalkeys = gears.table.join( -- Configure the hotkeys for screenshot
 	}), -- Configue hotkeys for opening specific applications
 	-- chrome
 	awful.key({ modkey }, "f", function()
-		-- awful.spawn("google-chrome-stable")
+		awful.spawn("google-chrome-stable")
 		-- awful.spawn("firefox")
-		awful.spawn("flatpak run io.github.zen_browser.zen")
+		-- awful.spawn("flatpak run io.github.zen_browser.zen")
 	end, {
 		description = "open chrome",
 		group = "launcher",
