@@ -6,7 +6,6 @@ pcall(require, "luarocks.loader")
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
-local apt_widget = require("awesome-wm-widgets.apt-widget.apt-widget")
 local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 local switcher = require("awesome-switcher")
 
@@ -284,7 +283,6 @@ awful.screen.connect_for_each_screen(function(s)
 				widget_type = "arc",
 			}),
 			mykeyboardlayout,
-			apt_widget(),
 			-- Only add brightness and battery widgets if the system is a laptop
 			is_laptop
 					and brightness_widget({
