@@ -15,9 +15,16 @@ run "setxkbmap us"
 run "/home/$USER/.screenlayout/defaultDisplaySetup.sh"
 
 # if nordvpn is installed, connect to us server
-run "nordvpn c us"
+# run "nordvpn c us"
 
+# if greenclip is installed,
 run "greenclip daemon"
+
+# if blueman is installed, run blueman-applet
+run "blueman-applet"
+
+# ensure firefox is running so faster startup
+run "firefox"
 
 setxkbmap us altgr-intl
 
